@@ -1,5 +1,10 @@
-import React from "react";
+import React , {useState} from "react";
 function UpdateUser() {
+
+ 
+
+
+
   return (
     <div className="d-flex vh-100  bg-primary justify-content-center center">
       <div className="w-50 h-50 bg-white rounded p-3">
