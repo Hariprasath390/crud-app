@@ -37,7 +37,7 @@ function Users() {
                 <td>{user.email}</td>
                 <td>{user.age}</td>
                 <td>
-                  <Link to="/update" className="btn btn-success">
+                  <Link to={`/update/${user._id}`} className="btn btn-success">
                     Update
                   </Link>
                   <button>Delete</button>
