@@ -9,7 +9,7 @@ function Users() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000")
+      .get("http://localhost:8000/")
       .then((result) => setUsers(result.data))
       .catch((err) => console.log(err));
   }, []);
@@ -20,6 +20,7 @@ function Users() {
         <Link to="/create" className="btn btn-success">
           Add +
         </Link>
+
         <table className="table">
           <thead>
             <tr>

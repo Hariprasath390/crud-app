@@ -39,7 +39,7 @@ const userData = {
 };
 
 axios
-  .post("http://localhost:8000/createUser", userData)
+  .post("v    ocalhost:8000/createUser", userData)
   .then((result) => console.log("Axios Result:", result.data))
   .catch((error) => {
     console.error("Axios Error:", error.message);
