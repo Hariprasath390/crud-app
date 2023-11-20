@@ -30,10 +30,11 @@ app.get("/getUser/:id", (req, res) => {
 app.put("/updateUser/:id", (req, res) => {
   const _id = req.params.id;
   UserModel.findByIdAndUpdate(
-    { _id },
-    { name: req.body.name, email: req.body.email, age: req.body.age } 
+    _id,
+    { $set: { name: req.body.name, email: req.body.email, age: req.body.age } },
+    { new: true } // Return the modified document
   )
-    .then((users) => res.json(users))
+    .then((user) => res.json(user))
     .catch((err) => res.json(err));
 });
 
