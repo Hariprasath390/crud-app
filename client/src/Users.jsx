@@ -14,6 +14,16 @@ function Users() {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleDelete = (id) => {
+    axios
+      .delete("http://localhost:8000/deleteUser/" + id)
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="d-flex vh-100 vw-100  bg-primary justify-content-center align-items-center">
       <div className="w-50 bg-white rounded p-3">
@@ -40,7 +50,12 @@ function Users() {
                   <Link to={`/update/${user._id}`} className="btn btn-success">
                     Update
                   </Link>
-                  <button>Delete</button>
+                  <button
+                    className="btn btn-danger "
+                    onClick={(e) => handleDelete(user._id)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
