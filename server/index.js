@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const UserModel = require("../server/models/Users");
-const axios = require("axios"); // Ensure axios is imported
 
 const app = express();
 
@@ -41,7 +40,7 @@ app.put("/updateUser/:id", (req, res) => {
 app.delete("/deleteUser/:id", (req, res) => {
   const _id = req.params.id;
   UserModel.findByIdAndDelete(_id)
-    .then(() => res.json({ message: "User deleted successfully" }))
+    .then(() => res.json({ message: "User deleted successfully." }))
     .catch((err) => res.status(500).json(err));
 });
 
@@ -58,19 +57,20 @@ app.listen(PORT, () => {
 });
 
 // Axios request example
-const userData = {
-  name: "hjkjj",
-  email: "sfjsdgfj@gmail.com",
-  age: "12",
-};
 
-axios
-  .post("http://localhost:8000/createUser", userData)
-  .then((result) => console.log("Axios Result:", result.data))
-  .catch((error) => {
-    console.error("Axios Error:", error.message);
-    if (error.response) {
-      console.error("Response Data:", error.response.data);
-      console.error("Status Code:", error.response.status);
-    }
-  });
+// const userData = {
+//   name: "hjkjj",
+//   email: "sfjsdgfj@gmail.com",
+//   age: "12",
+// };
+
+// axios
+//   .post("http://localhost:8000/createUser", userData)
+//   .then((result) => console.log("Axios Result:", result.data))
+//   .catch((error) => {
+//     console.error("Axios Error:", error.message);
+//     if (error.response) {
+//       console.error("Response Data:", error.response.data);
+//       console.error("Status Code:", error.response.status);
+//     }
+//   });
