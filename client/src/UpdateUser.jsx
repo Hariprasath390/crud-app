@@ -6,8 +6,6 @@ function UpdateUser() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  console.log(id, "++++++++++++++++++++++++++++++++++++++");
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [age, setAge] = useState("");
@@ -22,10 +20,37 @@ function UpdateUser() {
         setAge(result.data.age);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
+
+  const validateForm = () => {
+    if (!name || !email || !age) {
+      alert("Please fill in all fields");
+      return false;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address");
+      return false;
+    }
+
+    // Validate age as a number
+    if (isNaN(age) || parseInt(age) <= 0) {
+      alert("Please enter a valid age");
+      return false;
+    }
+
+    return true;
+  };
 
   const Update = (e) => {
     e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
     axios
       .put("http://localhost:8000/updateUser/" + id, { name, email, age })
       .then((result) => {
